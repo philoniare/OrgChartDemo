@@ -1,0 +1,52 @@
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <textarea [(ngModel)]="datasourceValue" rows="25" cols="50"></textarea>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <h4>Choose font family</h4>
+        <label for="fontFamily">Font Family: </label>
+        <select [(ngModel)]="selectedFontFamily" id="fontFamily">
+          <option *ngFor="let c of fontFamilyChoices" [ngValue]="c">{{c}}</option>
+        </select>
+      </div>
+
+      <div>
+        <h4>Choose team colors</h4>
+        <div *ngFor="let team of colorSelections | keyvalue">
+          <div>
+            Team head name: {{team.key}}
+          </div>
+          <label for="color">Choose color: </label>
+          <select [(ngModel)]="colorSelections[team.key]" id="color">
+            <option *ngFor="let c of colorChoices" [ngValue]="c">{{c}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <h4>Choose role icons</h4>
+        <div *ngFor="let role of uniqueRoleSelections | keyvalue">
+          <div>Role name: {{role.key}}</div>
+          <label for="icon">Choose icon: </label>
+          <select [(ngModel)]="uniqueRoleSelections[role.key]" id="icon">
+            <option *ngFor="let c of iconChoices" [ngValue]="c">{{c}}</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <organization-chart [datasource]="ds" [fontFamily]="selectedFontFamily"
+                        [colorSelections]="colorSelections"
+                        [roleIconMappings]="uniqueRoleSelections"></organization-chart>
+  </div>
+</div>
+
+
+
+
+
